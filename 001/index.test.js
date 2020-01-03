@@ -6,4 +6,14 @@ test('euler 001', () => {
        Find the sum of all the multiples of 3 or 5 below 1000.*/
 
     expect(euler(10)).toBe(23)
+
+    // ... yeah, yeah... there are multiple assertions in a single test
+
+    expect(euler(1000)).toBe(233168)
+
+    expect(euler(49)).toBe(543)
+
+    expect(euler(19564)).toBe(89301183)
+
+    expect(euler(8456)).toBe(16687353)
 })
