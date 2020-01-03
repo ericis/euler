@@ -1,0 +1,27 @@
+{
+    "name": "@ericis/euler",
+    "version": "1.0.0",
+    "description": "Letting go of ego and embracing code",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ericis/euler.git"
+    },
+    "keywords": [
+        "euler",
+        "ProjectEuler100"
+    ],
+    "author": "Eric Swanson",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ericis/euler/issues"
+    },
+    "homepage": "https://github.com/ericis/euler#readme",
+    "devDependencies": {
+        "jest": "^24.9.0"
+    }
+}
