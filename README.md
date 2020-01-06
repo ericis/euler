@@ -15,4 +15,4 @@ It is recommended that you do not view the answers to this challenge, but instea
 2. `npm i` to install dependencies
 3. `npm test` to run the tests
 
-You can view the tests and source code in each numbered directory.
+You can view the tests and source code in each numbered directory under `./src`.
