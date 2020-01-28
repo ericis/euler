@@ -1,69 +1,56 @@
 const perf = require('../perf')
 
-const createFibSeq = () => {
+const createFibSeqToUpperBoundaryWithSum = (currentTerm, lastTerm, currentSumOfEvens, upperBoundary) => {
 
-    const seq = [1, 2]
-    const terms = [1, 2]
-    let fib = 2
-
-    // create a sequence with 49 unique terms
-    while (fib < 10000000000) {
-        fib = terms[0] + terms[1]
-        seq[seq.length] = fib
-        terms[0] = terms[1]
-        terms[1] = fib
+    if (currentTerm >= upperBoundary) {
+        // console.log('Max term reached: %d of %d', currentTerm, upperBoundary)
+        return currentSumOfEvens
     }
 
-    return seq
+    const newTerm = currentTerm + lastTerm
+    const newSumOfEvens = (newTerm % 2 === 0) ? currentSumOfEvens + newTerm : currentSumOfEvens
+
+    // console.log('Fib current term: %d, new term: %d, sum: %d', currentTerm, newTerm, newSumOfEvens)
+
+    return createFibSeqToUpperBoundaryWithSum(newTerm, currentTerm, newSumOfEvens, upperBoundary)
 }
 
 const euler = (upperBoundary) => {
 
     const sum = perf.measure(() => {
 
-        const seq = createFibSeq()
+        if (upperBoundary <= 1) return 0
+        else if (upperBoundary === 2) return 2
 
-        let internalSum = 0
-
-        // filter the terms by evens and sum them
-        seq.filter(term => {
-            if (term <= upperBoundary &&
-                term % 2 === 0) {
-                internalSum += term
-            }
-            // just ignore all items
-            return false
-        })
-
-        return internalSum
+        return createFibSeqToUpperBoundaryWithSum(3, 2, 2, upperBoundary)
     })
 
     return sum
+}
+
+const createFibSeqToTermCountLimitWithSum = (currentTerm, lastTerm, currentSumOfEvens, termCount, termLimit) => {
+
+    if (termCount >= termLimit) {
+        // console.log('Max terms reached: %d of %d', termCount, termLimit)
+        return currentSumOfEvens
+    }
+
+    const newTerm = currentTerm + lastTerm
+    const newSumOfEvens = (newTerm % 2 === 0) ? currentSumOfEvens + newTerm : currentSumOfEvens
+
+    // console.log('Fib current term: %d, new term: %d, sum: %d', currentTerm, newTerm, newSumOfEvens)
+
+    return createFibSeqToTermCountLimitWithSum(newTerm, currentTerm, newSumOfEvens, termCount + 1, termLimit)
 }
 
 const freeCodeCampVersion = (termLimit) => {
 
     const sum = perf.measure(() => {
 
-        const seq = createFibSeq()
+        if (termLimit <= 1) return 0
+        else if (termLimit === 2) return 2
 
-        // grab only the number of terms expected
-        const terms = seq.slice(0, termLimit)
-
-        // console.log('# of terms in seq, # of terms', seq.length, terms.length)
-
-        let internalSum = 0
-
-        // filter the terms by evens and sum them
-        terms.filter(term => {
-            if (term % 2 === 0) {
-                internalSum += term
-            }
-            // just ignore all items
-            return false
-        })
-
-        return internalSum
+        return createFibSeqToTermCountLimitWithSum(3, 2, 2, 3, termLimit)
     })
 
     return sum
