@@ -10,13 +10,12 @@ test('euler 002', async() => {
        find the sum of the even-valued terms.
        https://projecteuler.net/problem=2
     */
-    expect(freeCodeCampVersion(10)).toBe(44)
+    expect(euler(89)).toBe(44)
+    expect(euler(4000000)).toBe(4613732)
 
-    // ... yeah, yeah... there are multiple assertions in a single test...
+    // https://www.freecodecamp.org/learn/coding-interview-prep/project-euler/problem-2-even-fibonacci-numbers
+    expect(freeCodeCampVersion(10)).toBe(44)
     expect(freeCodeCampVersion(18)).toBe(3382)
     expect(freeCodeCampVersion(23)).toBe(60696)
     expect(freeCodeCampVersion(43)).toBe(350704366)
-
-    expect(euler(89)).toBe(44)
-    expect(euler(4000000)).toBe(4613732)
 })
