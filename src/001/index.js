@@ -10,7 +10,7 @@ const calculateArithmeticProgression = quotient => {
 // https://www.freecodecamp.org/learn/coding-interview-prep/project-euler/problem-1-multiples-of-3-and-5
 module.exports = (limitStartsAt) => {
 
-    const sum = perf.measure(() => {
+    const sum = perf.measure('001', () => {
 
         const upperLimit = limitStartsAt - 1
 

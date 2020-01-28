@@ -1,15 +1,17 @@
 const { PerformanceObserver, performance } = require('perf_hooks')
 
-const obs = new PerformanceObserver(items => {
+const obs = new PerformanceObserver((items, observer) => {
 
-    console.log(items.getEntries()[0].duration)
+    console.log(items.getEntries())
 
     performance.clearMarks()
+
+    observer.disconnect()
 })
 
 obs.observe({ entryTypes: ['measure'] })
 
-function measure(timedFn) {
+function measure(name, timedFn) {
 
     performance.mark('pre')
 
@@ -17,7 +19,7 @@ function measure(timedFn) {
 
     performance.mark('post')
 
-    performance.measure('execution', 'pre', 'post')
+    performance.measure(name, 'pre', 'post')
 
     return result
 }

@@ -17,7 +17,7 @@ const createFibSeqToUpperBoundaryWithSum = (currentTerm, lastTerm, currentSumOfE
 
 const euler = (upperBoundary) => {
 
-    const sum = perf.measure(() => {
+    const sum = perf.measure('002', () => {
 
         if (upperBoundary <= 1) return 0
         else if (upperBoundary === 2) return 2
@@ -45,7 +45,7 @@ const createFibSeqToTermCountLimitWithSum = (currentTerm, lastTerm, currentSumOf
 
 const freeCodeCampVersion = (termLimit) => {
 
-    const sum = perf.measure(() => {
+    const sum = perf.measure('002', () => {
 
         if (termLimit <= 1) return 0
         else if (termLimit === 2) return 2
