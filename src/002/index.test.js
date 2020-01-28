@@ -12,7 +12,7 @@ test('euler 002', async() => {
     */
     expect(freeCodeCampVersion(10)).toBe(44)
 
-    // // ... yeah, yeah... there are multiple assertions in a single test...
+    // ... yeah, yeah... there are multiple assertions in a single test...
     expect(freeCodeCampVersion(18)).toBe(3382)
     expect(freeCodeCampVersion(23)).toBe(60696)
     expect(freeCodeCampVersion(43)).toBe(350704366)

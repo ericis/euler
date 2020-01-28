@@ -1,56 +1,44 @@
 const perf = require('../perf')
 
-const createFibSeqToUpperBoundaryWithSum = (currentTerm, lastTerm, currentSumOfEvens, upperBoundary) => {
-
-    if (currentTerm >= upperBoundary) {
-        // console.log('Max term reached: %d of %d', currentTerm, upperBoundary)
-        return currentSumOfEvens
-    }
-
-    const newTerm = currentTerm + lastTerm
-    const newSumOfEvens = (newTerm % 2 === 0) ? currentSumOfEvens + newTerm : currentSumOfEvens
-
-    // console.log('Fib current term: %d, new term: %d, sum: %d', currentTerm, newTerm, newSumOfEvens)
-
-    return createFibSeqToUpperBoundaryWithSum(newTerm, currentTerm, newSumOfEvens, upperBoundary)
-}
-
 const euler = (upperBoundary) => {
 
     const sum = perf.measure('002', () => {
 
-        if (upperBoundary <= 1) return 0
-        else if (upperBoundary === 2) return 2
+        let total = 0
+        let x = 1, y = 1
 
-        return createFibSeqToUpperBoundaryWithSum(3, 2, 2, upperBoundary)
+        do {
+            // console.log('x: %d, y: %d', x, y)
+            if (x % 2 === 0) total += x
+            const z = x
+            x += y
+            y = z
+        } while(x <= upperBoundary)
+
+        return total
     })
 
     return sum
-}
-
-const createFibSeqToTermCountLimitWithSum = (currentTerm, lastTerm, currentSumOfEvens, termCount, termLimit) => {
-
-    if (termCount >= termLimit) {
-        // console.log('Max terms reached: %d of %d', termCount, termLimit)
-        return currentSumOfEvens
-    }
-
-    const newTerm = currentTerm + lastTerm
-    const newSumOfEvens = (newTerm % 2 === 0) ? currentSumOfEvens + newTerm : currentSumOfEvens
-
-    // console.log('Fib current term: %d, new term: %d, sum: %d', currentTerm, newTerm, newSumOfEvens)
-
-    return createFibSeqToTermCountLimitWithSum(newTerm, currentTerm, newSumOfEvens, termCount + 1, termLimit)
 }
 
 const freeCodeCampVersion = (termLimit) => {
 
     const sum = perf.measure('002', () => {
 
-        if (termLimit <= 1) return 0
-        else if (termLimit === 2) return 2
+        let termCount = 1
+        let total = 0
+        let x = 1, y = 1
 
-        return createFibSeqToTermCountLimitWithSum(3, 2, 2, 3, termLimit)
+        do {
+            // console.log('x: %d, y: %d, count: %d', x, y, termCount)
+            if (x % 2 === 0) total += x
+            const z = x
+            x += y
+            y = z
+            termCount++
+        } while(termCount <= termLimit)
+
+        return total
     })
 
     return sum
