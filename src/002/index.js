@@ -19,18 +19,23 @@ const createFibSeq = () => {
 
 const euler = (upperBoundary) => {
 
-    const seq = createFibSeq()
+    const sum = perf.measure(() => {
 
-    let sum = 0
+        const seq = createFibSeq()
 
-    // filter the terms by evens and sum them
-    seq.filter(term => {
-        if (term <= upperBoundary &&
-            term % 2 === 0) {
-            sum += term
-        }
-        // just ignore all items
-        return false
+        let internalSum = 0
+
+        // filter the terms by evens and sum them
+        seq.filter(term => {
+            if (term <= upperBoundary &&
+                term % 2 === 0) {
+                internalSum += term
+            }
+            // just ignore all items
+            return false
+        })
+
+        return internalSum
     })
 
     return sum
@@ -38,22 +43,27 @@ const euler = (upperBoundary) => {
 
 const freeCodeCampVersion = (termLimit) => {
 
-    const seq = createFibSeq()
+    const sum = perf.measure(() => {
 
-    // grab only the number of terms expected
-    const terms = seq.slice(0, termLimit)
+        const seq = createFibSeq()
 
-    // console.log('# of terms in seq, # of terms', seq.length, terms.length)
+        // grab only the number of terms expected
+        const terms = seq.slice(0, termLimit)
 
-    let sum = 0
+        // console.log('# of terms in seq, # of terms', seq.length, terms.length)
 
-    // filter the terms by evens and sum them
-    terms.filter(term => {
-        if (term % 2 === 0) {
-            sum += term
-        }
-        // just ignore all items
-        return false
+        let internalSum = 0
+
+        // filter the terms by evens and sum them
+        terms.filter(term => {
+            if (term % 2 === 0) {
+                internalSum += term
+            }
+            // just ignore all items
+            return false
+        })
+
+        return internalSum
     })
 
     return sum
