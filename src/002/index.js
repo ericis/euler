@@ -4,6 +4,7 @@ const euler = (upperBoundary) => {
 
     const sum = perf.measure('002', () => {
 
+        // NOTE: a recursive solution was nearly just as fast, but this is MUCH easier to read and maintain
         let total = 0
         let x = 1, y = 1
 
@@ -25,6 +26,7 @@ const freeCodeCampVersion = (termLimit) => {
 
     const sum = perf.measure('002', () => {
 
+        // NOTE: a recursive solution was nearly just as fast, but this is MUCH easier to read and maintain
         let termCount = 1
         let total = 0
         let x = 1, y = 1
